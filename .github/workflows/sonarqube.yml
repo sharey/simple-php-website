@@ -1,9 +1,9 @@
 name: SonarQube Analysis
 on:
    push:
-     branches:
-       - sonar-analysis # or the name of your main branch
-  workflow_dispatch:
+      branches:
+         - sonar-analysis # or the name of your main branch
+   workflow_dispatch:
   
 jobs:
   build:
