@@ -3,12 +3,11 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing Composer
-      - curl -sS https://getcomposer.org/installer | php
-      - php composer.phar install --no-interaction --no-progress
+      - echo Installing dependencies using composer
+      - composer install --no-interaction --no-progress
   pre_build:
     commands:
-      - echo Running PHPUnit tests
+      - echo Running Codeception Unit Tests
   build:
     commands:
       - ./vendor/bin/codecept run Unit --html

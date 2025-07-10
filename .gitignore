@@ -1,12 +1,8 @@
 /.idea
 .php_cs.cache
 
-
 # Composer dependencies
 /vendor/
-
-# PHPUnit cache/results
-.phpunit.result.cache
 
 # Codeception output and generated files
 tests/_output/
