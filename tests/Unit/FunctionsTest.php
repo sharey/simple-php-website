@@ -1,11 +1,15 @@
 <?php
-use PHPUnit\Framework\TestCase;
-
-require_once __DIR__ . '/../includes/functions.php';
-require_once __DIR__ . '/../includes/config.php';
-
-class FunctionsTest extends TestCase
+class FunctionsTest extends \Codeception\Test\Unit
 {
+    /** @var \UnitTester */
+    protected $tester;
+
+    protected function _before()
+    {
+        require_once __DIR__ . '/../../includes/functions.php';
+        require_once __DIR__ . '/../../includes/config.php';
+    }
+
     public function testConfigReturnsCorrectValues()
     {
         $this->assertEquals('Simple PHP Website', config('name'));

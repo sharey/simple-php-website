@@ -8,6 +8,12 @@
 # PHPUnit cache/results
 .phpunit.result.cache
 
+# Codeception output and generated files
+tests/_output/
+tests/_envs/
+tests/Support/_generated/
+report.html
+
 # Composer PHAR file
 composer.phar
 
