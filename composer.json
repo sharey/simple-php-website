@@ -1,6 +1,5 @@
 {
-    "name": "shraddha1/simple-php-website",
     "require-dev": {
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^9.5"
     }
 }
