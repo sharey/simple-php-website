@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - echo Installing dependencies using composer
-      - composer install --no-interaction --no-progress
+      - composer install --no-interaction --no-progress || composer update -W
   pre_build:
     commands:
       - echo Running Codeception Unit Tests
