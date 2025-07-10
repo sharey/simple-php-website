@@ -1,2 +1,21 @@
 /.idea
 .php_cs.cache
+
+
+# Composer dependencies
+/vendor/
+
+# PHPUnit cache/results
+.phpunit.result.cache
+
+# Composer PHAR file
+composer.phar
+
+# OS and editor files
+.DS_Store
+*.swp
+*.swo
+
+# Logs and temp files
+*.log
+/tmp/
