@@ -6,8 +6,7 @@
     },
     "require": {
         "symfony/http-foundation": "5.4.50",
-        "monolog/monolog": "1.0.0",
-        "twig/twig": "3.11.2",
-        "psr/log": "1.0.0"
+        "monolog/monolog": "1.12.0",
+        "twig/twig": "3.11.2"
     }
 }
