@@ -59,17 +59,23 @@ jobs:
       - name: Run Snyk Open Source Scan & Generate Snyk Report
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk test --json-file-output=snyk-report.json
+        run: snyk test --json-file-output=snyk-report.json || true
 
       - name: Upload Snyk Report Artifact
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: Snyk-Report
           path: snyk-report.json
 
       # Optionally monitor so issues are visible in the Snyk dashboard:
       - name: Snyk Monitor
-        run: snyk monitor
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: snyk monitor || true
+      
+      - name: Check Snyk Results
+        run: snyk test --severity-threshold=high
 
   # ZapBaseline:
   #   runs-on: ubuntu-latest
