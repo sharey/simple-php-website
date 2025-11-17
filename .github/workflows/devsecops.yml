@@ -45,31 +45,31 @@ jobs:
 #       #   env:
 #       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-#   snyk-scan:
-#     name: Snyk Vulnerability Scan (SCA)
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
+  snyk-scan:
+    name: Snyk Vulnerability Scan (SCA)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-#       - name: Set up Snyk
-#         uses: snyk/actions/setup@master
-#         with:
-#           snyk-version: 'latest'           # or a specific version
+      - name: Set up Snyk
+        uses: snyk/actions/setup@master
+        with:
+          snyk-version: 'latest'           # or a specific version
 
-#       - name: Run Snyk Open Source Scan & Generate Snyk Report
-#         env:
-#           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-#         run: snyk test --json-file-output=snyk-report.json
+      - name: Run Snyk Open Source Scan & Generate Snyk Report
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: snyk test --json-file-output=snyk-report.json
 
-#       - name: Upload Snyk Report Artifact
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: Snyk-Report
-#           path: snyk-report.json
+      - name: Upload Snyk Report Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Snyk-Report
+          path: snyk-report.json
 
-#       # Optionally monitor so issues are visible in the Snyk dashboard:
-#       - name: Snyk Monitor
-#         run: snyk monitor
+      # Optionally monitor so issues are visible in the Snyk dashboard:
+      - name: Snyk Monitor
+        run: snyk monitor
 
   # ZapBaseline:
   #   runs-on: ubuntu-latest
