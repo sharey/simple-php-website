@@ -1,2 +1,38 @@
+# IDE and Editor
 /.idea
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# PHP
 .php_cs.cache
+.phpunit.result.cache
+
+# Composer
+/vendor/
+composer.phar
+
+# Codeception
+/tests/_output/*
+!/tests/_output/.gitkeep
+/tests/_support/_generated/
+/tests/Support/_generated/
+
+# Environment and Config
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+/logs/
+
+# Cache
+/cache/
+*.cache
+
+# Build artifacts
+/build/
+/dist/

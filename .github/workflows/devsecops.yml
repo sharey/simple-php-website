@@ -1,0 +1,85 @@
+name: DevSecOps-Trial
+
+on:
+  push:
+    branches:
+      - devsecops-pipeline-from-cicd
+  pull_request:
+
+permissions:
+  contents: read
+  id-token: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      # ---- Install Dependencies ----
+      - name: Install composer deps
+        run: composer install --no-interaction --no-progress || composer update -W
+
+      # ---- Unit Tests ----
+      - name: Run PHP Unit Tests
+        run: vendor/bin/codecept run Unit --html
+
+#   sonarqube-scan:
+#     name: SonarQube Scan (SAST)
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+#       - uses: sonarsource/sonarqube-scan-action@master
+#         env:
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+#       # If you wish to fail your job when the Quality Gate is red, uncomment the
+#       # following lines. This would typically be used to fail a deployment.
+#       # - uses: sonarsource/sonarqube-quality-gate-action@master
+#       #   timeout-minutes: 5
+#       #   env:
+#       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+#   snyk-scan:
+#     name: Snyk Vulnerability Scan (SCA)
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: Set up Snyk
+#         uses: snyk/actions/setup@master
+#         with:
+#           snyk-version: 'latest'           # or a specific version
+
+#       - name: Run Snyk Open Source Scan & Generate Snyk Report
+#         env:
+#           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#         run: snyk test --json-file-output=snyk-report.json
+
+#       - name: Upload Snyk Report Artifact
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: Snyk-Report
+#           path: snyk-report.json
+
+#       # Optionally monitor so issues are visible in the Snyk dashboard:
+#       - name: Snyk Monitor
+#         run: snyk monitor
+
+  # ZapBaseline:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: ZAP Scan
+  #       uses: zaproxy/action-baseline@v0.12.0
+  #       with:
+  #         target: 'https://www.yahoo.com/'
+  #         rules_file_name: '.zap/rules.tsv'
+
+
+      
+
+      
