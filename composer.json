@@ -6,6 +6,6 @@
     },
     "require": {
         "symfony/http-foundation": "2.7.49",
-        "twig/twig": "1.19.0"
+        "twig/twig": "1.44.7"
     }
 }
