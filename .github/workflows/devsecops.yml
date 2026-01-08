@@ -85,7 +85,7 @@ jobs:
       - name: Snyk Monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk monitor --org=sharey-default --project-name=simple-php-website --tags=env=test || true
+        run: snyk monitor --org=sharey-default --project-name=simple-php-website || true
       
       - name: Check for High/Critical Vulnerabilities
         env:
