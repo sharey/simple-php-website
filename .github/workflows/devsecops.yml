@@ -63,7 +63,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
-          snyk test --json-file-output=snyk-report.json || true
+          snyk test --org=sharey-default --json-file-output=snyk-report.json || true
           snyk-to-html -i snyk-report.json -o snyk-report.html || true
 
       - name: Upload Snyk Report Artifact
@@ -79,13 +79,13 @@ jobs:
       - name: Snyk Monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk monitor || true
+        run: snyk monitor --org=sharey-default --project-name=simple-php-website --tags=env=test || true
       
       - name: Check for High/Critical Vulnerabilities
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
-          snyk test --severity-threshold=high --json > high-severity-check.json || EXIT_CODE=$?
+          snyk test --org=sharey-default --severity-threshold=high --json > high-severity-check.json || EXIT_CODE=$?
           if [ "${EXIT_CODE}" == "1" ]; then
             echo "High or Critical vulnerabilities found!"
             exit 1
