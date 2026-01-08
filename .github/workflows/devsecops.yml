@@ -63,7 +63,13 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
-          snyk test --org=sharey-default --json-file-output=snyk-report.json || true
+          snyk test --org=sharey-default --json-file-output=snyk-report.json || EXIT_CODE=$?
+          if [ "${EXIT_CODE}" == "1" ]; then
+            echo "Vulnerabilities found, continuing to generate report..."
+          elif [ -n "${EXIT_CODE}" ] && [ "${EXIT_CODE}" != "0" ]; then
+            echo "Snyk scan failed with error code ${EXIT_CODE}"
+            exit ${EXIT_CODE}
+          fi
           snyk-to-html -i snyk-report.json -o snyk-report.html || true
 
       - name: Upload Snyk Report Artifact
