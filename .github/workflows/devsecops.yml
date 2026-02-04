@@ -27,6 +27,7 @@ jobs:
       - name: Run PHP Unit Tests
         run: vendor/bin/codecept run Unit --html
 
+
 #   sonarqube-scan:
 #     name: SonarQube Scan (SAST)
 #     runs-on: ubuntu-latest
